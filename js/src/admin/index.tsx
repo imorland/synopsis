@@ -8,9 +8,13 @@ app.initializers.add('ianm-synopsis', () => {
     .registerSetting(function () {
       const hasTags = app.initializers.has('flarum-tags');
 
-      return hasTags ? <div className="Form-group">
-        <p className="helpText">{app.translator.trans('ianm-synopsis.admin.settings.tags-enabled')}</p>
-      </div> : '';
+      return hasTags ? (
+        <div className="Form-group">
+          <p className="helpText">{app.translator.trans('ianm-synopsis.admin.settings.tags-enabled')}</p>
+        </div>
+      ) : (
+        ''
+      );
     })
     .registerSetting({
       label: app.translator.trans('ianm-synopsis.admin.settings.excerpt-length.label'),
