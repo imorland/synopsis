@@ -6,14 +6,11 @@ app.initializers.add('ianm-synopsis', () => {
   app.extensionData
     .for('ianm-synopsis')
     .registerSetting(function () {
-      const hasTags = app.initializers.has('flarum-tags');
-
-      return hasTags ? (
+      if (!('flarum-tags' in flarum.extensions)) return;
+      return (
         <div className="Form-group">
           <p className="helpText">{app.translator.trans('ianm-synopsis.admin.settings.tags-enabled')}</p>
         </div>
-      ) : (
-        ''
       );
     })
     .registerSetting({
