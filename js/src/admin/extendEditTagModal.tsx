@@ -5,6 +5,7 @@ import ItemList from 'flarum/common/utils/ItemList';
 import Tag from 'flarum/tags/models/Tag';
 import Model from 'flarum/common/Model';
 import Stream from 'flarum/common/utils/Stream';
+import type Mithril from 'mithril';
 
 export default function () {
   if (app.initializers.has('flarum-tags')) {
@@ -23,7 +24,7 @@ export default function () {
       return data;
     });
 
-    extend(EditTagModal.prototype, 'fields', function (items: ItemList) {
+    extend(EditTagModal.prototype, 'fields', function (items: ItemList<Mithril.Children>) {
       items.add(
         'synopsis-excerpt-length',
         <div className="Form-group">

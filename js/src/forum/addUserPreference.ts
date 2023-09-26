@@ -1,4 +1,4 @@
-import type * as Mithril from 'mithril';
+import type Mithril from 'mithril';
 import app from 'flarum/forum/app';
 import { extend } from 'flarum/common/extend';
 import SettingsPage from 'flarum/forum/components/SettingsPage';

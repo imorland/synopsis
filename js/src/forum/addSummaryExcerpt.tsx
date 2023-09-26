@@ -6,7 +6,7 @@ import { truncate } from 'flarum/common/utils/string';
 import ItemList from 'flarum/common/utils/ItemList';
 import Tag from 'flarum/tags/models/Tag';
 import Model from 'flarum/common/Model';
-import { getPlainContent } from './util/getPlainContent';
+import type Mithril from 'mithril';
 
 export default function addSummaryExcerpt() {
   if (app.initializers.has('flarum-tags')) {
@@ -19,7 +19,7 @@ export default function addSummaryExcerpt() {
     else params.include.push('lastPost');
   });
 
-  extend(DiscussionListItem.prototype, 'infoItems', function (items: ItemList) {
+  extend(DiscussionListItem.prototype, 'infoItems', function (items: ItemList<Mithril.Children>) {
     // Skip if we are searching to preserve most relevant post content as excerpt,
     // that way we also preserve highlighting of search terms in the most relevant post.
     if (app.forum.attribute('synopsis.disable_when_searching') && app.discussions.params.q) return;
