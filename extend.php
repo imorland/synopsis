@@ -16,6 +16,7 @@ use Flarum\Api\Controller\UpdateDiscussionController;
 use Flarum\Extend;
 use Flarum\Tags\Api\Serializer\TagSerializer;
 use Flarum\Tags\Event\Saving as TagSaving;
+use Flarum\Tags\Tag;
 
 return [
     (new Extend\Frontend('forum'))
@@ -26,6 +27,10 @@ return [
         ->js(__DIR__.'/js/dist/admin.js'),
 
     new Extend\Locales(__DIR__.'/resources/locale'),
+
+    (new Extend\Model(Tag::class))
+        ->cast('excerpt_length', 'int')
+        ->cast('rich_excerpts', 'bool'),
 
     (new Extend\Settings())
         ->default('ianm-synopsis.excerpt_length', 200)
