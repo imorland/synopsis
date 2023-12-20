@@ -40,3 +40,8 @@ php flarum cache:clear
 - [Discuss](https://discuss.flarum.org/)  
 - [Packagist](https://packagist.org/packages/ianm/synopsis) 
 - [Summaries by jordanjay29 (the original extension)](https://github.com/jordanjay29/flarum-ext-summaries) 
+
+## Support
+
+Please consider supporting my extension development and maintenance work.
+[Buy me a coffee](https://www.buymeacoffee.com/ianm1)

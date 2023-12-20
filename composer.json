@@ -23,6 +23,11 @@
         "source": "https://github.com/imorland/synopsis",
         "forum": "https://discuss.flarum.org/d/25772"
     },
+    "funding": [
+        {
+            "url": "https://www.buymeacoffee.com/ianm1"
+        }
+    ],
     "require": {
         "flarum/core": "^1.8.0",
         "flarum/tags": "*"
