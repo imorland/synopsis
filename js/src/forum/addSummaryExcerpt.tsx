@@ -8,6 +8,7 @@ import ItemList from 'flarum/common/utils/ItemList';
 import Tag from 'flarum/tags/models/Tag';
 import Model from 'flarum/common/Model';
 import type Mithril from 'mithril';
+import Excerpt from './components/Excerpt';
 
 export default function addSummaryExcerpt() {
   if (app.initializers.has('flarum-tags')) {
@@ -47,11 +48,8 @@ export default function addSummaryExcerpt() {
       return;
     }
 
-    if (!excerptPost?.contentHtml?.()) return;
-    const content = richExcerpt ? m.trust(truncate(excerptPost.contentHtml(), excerptLength)) : truncate(excerptPost.contentPlain(), excerptLength);
-
     if (excerptPost) {
-      const excerpt = <div>{content}</div>;
+      const excerpt = <Excerpt post={excerptPost} length={excerptLength} richExcerpt={richExcerpt} />;
 
       items.add(onMobile ? 'excerptM' : 'excerpt', excerpt, -100);
     }
