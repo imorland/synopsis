@@ -4,6 +4,7 @@ import DiscussionListState from 'flarum/forum/states/DiscussionListState';
 import DiscussionListItem from 'flarum/forum/components/DiscussionListItem';
 import { truncate } from 'flarum/common/utils/string';
 import ItemList from 'flarum/common/utils/ItemList';
+/* @ts-ignore */
 import Tag from 'flarum/tags/models/Tag';
 import Model from 'flarum/common/Model';
 import type Mithril from 'mithril';
@@ -26,7 +27,7 @@ export default function addSummaryExcerpt() {
 
     const discussion = this.attrs.discussion;
 
-    if (app.session.user && !app.session.user.preferences().showSynopsisExcerpts) {
+    if (app.session.user && !app.session.user.preferences()?.showSynopsisExcerpts) {
       return;
     }
 
@@ -39,7 +40,7 @@ export default function addSummaryExcerpt() {
     const excerptPost = app.forum.attribute('synopsis.excerpt_type') === 'first' ? discussion.firstPost() : discussion.lastPost();
     const excerptLength = typeof tag?.excerptLength() === 'number' ? tag?.excerptLength() : app.forum.attribute('synopsis.excerpt_length');
     const richExcerpt = typeof tag?.richExcerpts() === 'number' ? tag?.richExcerpts() : app.forum.attribute('synopsis.rich_excerpts');
-    const onMobile = app.session.user ? app.session.user.preferences().showSynopsisExcerptsOnMobile : false;
+    const onMobile = app.session.user ? app.session.user.preferences()?.showSynopsisExcerptsOnMobile : false;
 
     // A length of zero means we don't want a synopsis for this discussion, so do nothing.
     if (excerptLength === 0) {
