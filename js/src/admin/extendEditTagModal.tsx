@@ -1,7 +1,9 @@
 import app from 'flarum/admin/app';
+/* @ts-ignore */
 import EditTagModal from 'flarum/tags/components/EditTagModal';
 import { extend } from 'flarum/common/extend';
 import ItemList from 'flarum/common/utils/ItemList';
+/* @ts-ignore */
 import Tag from 'flarum/tags/models/Tag';
 import Model from 'flarum/common/Model';
 import Stream from 'flarum/common/utils/Stream';
