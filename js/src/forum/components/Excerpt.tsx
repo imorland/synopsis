@@ -23,7 +23,7 @@ export default class Excerpt extends Component<ExcerptAttrs> {
   }
 
   view() {
-    return <div>{m.trust(this.getContent())}</div>;
+    return <div className="Synopsis-excerpt">{m.trust(this.getContent())}</div>;
   }
 
   getContent(): string {
