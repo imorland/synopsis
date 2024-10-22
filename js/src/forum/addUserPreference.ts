@@ -1,4 +1,3 @@
-import type Mithril from 'mithril';
 import app from 'flarum/forum/app';
 import { extend } from 'flarum/common/extend';
 import SettingsPage from 'flarum/forum/components/SettingsPage';
@@ -6,14 +5,15 @@ import FieldSet from 'flarum/common/components/FieldSet';
 import ItemList from 'flarum/common/utils/ItemList';
 import Switch from 'flarum/common/components/Switch';
 import Stream from 'flarum/common/utils/Stream';
+import type Mithril from 'mithril';
 
 export default function () {
   extend(SettingsPage.prototype, 'oninit', function () {
-    this.showSynopsisExcerpts = Stream(this.user.preferences().showSynopsisExcerpts);
-    this.showSynopsisExcerptsOnMobile = Stream(this.user.preferences().showSynopsisExcerptsOnMobile);
+    this.showSynopsisExcerpts = Stream(this.user?.preferences()?.showSynopsisExcerpts);
+    this.showSynopsisExcerptsOnMobile = Stream(this.user?.preferences()?.showSynopsisExcerptsOnMobile);
   });
 
-  extend(SettingsPage.prototype, 'settingsItems', function (items: ItemList) {
+  extend(SettingsPage.prototype, 'settingsItems', function (items) {
     items.add(
       'synopsis',
       FieldSet.component(
@@ -27,17 +27,20 @@ export default function () {
   });
 
   SettingsPage.prototype['summariesItems'] = function () {
-    const items = new ItemList();
+    const items = new ItemList<Mithril.Children>();
+    if (!this.user) return items;
+
+    const prefs = this.user.preferences();
 
     items.add(
       'synopsis-excerpts',
       Switch.component(
         {
-          state: this.user.preferences().showSynopsisExcerpts,
-          onchange: (value) => {
+          state: prefs?.showSynopsisExcerpts,
+          onchange: (value: boolean) => {
             this.showSynopsisExcerptsLoading = true;
 
-            this.user.savePreferences({ showSynopsisExcerpts: value }).then(() => {
+            this.user?.savePreferences({ showSynopsisExcerpts: value }).then(() => {
               this.showSynopsisExcerptsLoading = false;
               m.redraw();
             });
@@ -48,17 +51,17 @@ export default function () {
       )
     );
 
-    if (this.user.preferences().showSynopsisExcerpts) {
+    if (prefs?.showSynopsisExcerpts) {
       items.add(
         'synopsis-excerpts-mobile',
         Switch.component(
           {
-            state: this.user.preferences().showSynopsisExcerptsOnMobile,
-            disabled: !this.user.preferences().showSynopsisExcerpts,
-            onchange: (value) => {
+            state: prefs?.showSynopsisExcerptsOnMobile,
+            disabled: !prefs?.showSynopsisExcerpts,
+            onchange: (value: boolean) => {
               this.showSynopsisExcerptsOnMobileLoading = true;
 
-              this.user.savePreferences({ showSynopsisExcerptsOnMobile: value }).then(() => {
+              this.user?.savePreferences({ showSynopsisExcerptsOnMobile: value }).then(() => {
                 this.showSynopsisExcerptsOnMobileLoading = false;
                 window.location.reload();
               });
