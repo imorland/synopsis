@@ -1,6 +1,8 @@
 import app from 'flarum/admin/app';
-import extendEditTagModal from './extendEditTagModal';
+import extendEditTagModal from './extenders/extendEditTagModal';
 import typeOptions from './util/typeOptions';
+
+export { default as extend } from './extend';
 
 app.initializers.add('ianm-synopsis', () => {
   app.extensionData
