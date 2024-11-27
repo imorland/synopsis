@@ -52,7 +52,8 @@ export default function addSummaryExcerpt() {
     if (excerptPost) {
       const excerpt = <Excerpt post={excerptPost} length={excerptLength} richExcerpt={richExcerpt} />;
 
-      items.add(onMobile ? 'excerptM' : 'excerpt', excerpt, -100);
+      items.add('excerpt', excerpt, -100);
+      onMobile && items.add('excerptM', excerpt, -100);
     }
   });
 }
