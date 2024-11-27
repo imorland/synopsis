@@ -1,30 +1,5 @@
-.DiscussionListItem-info .item-excerpt {
-  margin-top: 8px;
-  margin-right: 20px;
-  white-space: normal;
-  font-size: 12px;
-  line-height: 1.5em;
-  color: @muted-more-color;
-  display: block;
-
-  // Fallback for `inert` HTML attribute
-  // Prevents interactivity with items within the excerpt
-  pointer-events: none;
-
-  * {
-    max-width: 100%
-  }
-
-  .DiscussionPage-list & {
-    display: none;
-  }
-
-  @media @phone {
-    display: none;
-  }
-}
-
-.DiscussionListItem-info .item-excerptM {
+// Mixin for shared item excerpt styles
+.item-excerpt-styles() {
   margin-top: 8px;
   margin-right: 20px;
   white-space: normal;
@@ -34,7 +9,7 @@
   display: block;
 
   * {
-    max-width: 100%
+    max-width: 100%;
   }
 
   .DiscussionPage-list & {
@@ -42,12 +17,36 @@
   }
 }
 
+// Apply shared styles to each specific selector
+.DiscussionListItem-info {
 
-.Synopsis-excerpt {
-  .FoFUpload--Upl-Image-Preview,
-  img {
-    max-height: 300px;
-    width: auto;
-    object-fit: contain;
+  // Styles for synopsis excerpts
+  .Synopsis-excerpt {
+
+    .FoFUpload--Upl-Image-Preview,
+    img {
+      max-height: 300px;
+      width: auto;
+      object-fit: contain;
+    }
+  }
+
+  .item-excerpt {
+    .item-excerpt-styles();
+
+    // Additional styles specific to .item-excerpt
+    pointer-events: none; // Fallback for `inert` HTML attribute
+
+    @media @phone {
+      display: none;
+    }
+  }
+
+  .item-excerptM {
+    .item-excerpt-styles();
+
+    @media @tablet-up {
+      display: none;
+    }
   }
 }
